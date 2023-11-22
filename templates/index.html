@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Youtube Comment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'style.css') }}" />
+  </head>
+
+  <body>
+    <div id="left-section">
+      <h3>YouTube Comment Analyzer</h3>
+      <form action="/" method="post">
+        <input type="text" name="youtube-link" placeholder="YouTube Video Link" id="youtube-link" />
+        <button type="submit">Analyse</button>
+      </form>
+      {% if statistics %}
+        <iframe id="video_embed" width="300" height="200" src="https://www.youtube.com/embed/{{ video_id }}"></iframe>
+        <p class="video_name">{{ statistics.video_name }}</p>
+        <h4 id="channel_name">{{ statistics.channel_name }}</h4>
+      {% elif error %}
+        <p class="error">Please enter valid YouTube Video URL</p>
+      {% endif %}
+    </div>
+    <div id="right-section">
+      <div id="graph-container">
+        {% if graph %}
+          <h1 class="heading">Statistics</h1>
+          <div id="statistics">
+            <div class="count view">
+              <span class="stat_text">View</span>
+              <span>{{ statistics.view_count }}</span>
+            </div>
+            <div class="count like">
+              <span class="stat_text">Like</span>
+              <span>{{ statistics.like_count }}</span>
+            </div>
+            <div class="count comment">
+              <span class="stat_text">Comment</span>
+              <span>{{ statistics.comment_count }}</span>
+            </div>
+            <div class="count published_at">
+              <span class="stat_text">Published At</span>
+              <span>{{ statistics.published_at|formatdatetime }}</span>
+            </div>
+          </div>
+          <div class="graphs">
+            <div id="dropdown-container">
+              <label for="graph-type">Select Graph Type:</label>
+              <select id="graph-type" onchange="changeGraph()">
+                <option value="complete">Complete Graph</option>
+                <option value="seven-day">7-Day Graph</option>
+              </select>
+            </div>
+            <img class="graph graph1" src="{{ graph }}" alt="Graph" />
+            <img class="graph graph2 none" src="{{ graph_7 }}" alt="Graph 7" />
+          </div>/<div class="cloud">
+            <img src="{{ cloud }}" alt="Graph" />
+          </div>
+        {% else %}
+          <div class="graphs"></div>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+  <script>
+    function changeGraph() {
+      var selectedValue = document.getElementById('graph-type').value
+    
+      if (selectedValue === 'complete') 
+      {
+        document.querySelector('.graph.graph2').classList.remove('none')
+        document.querySelector('.graph.graph1').classList.add('none')
+      } else if (selectedValue === 'seven-day') 
+      {
+        document.querySelector('.graph.graph1').classList.remove('none')
+        document.querySelector('.graph.graph2').classList.add('none')
+      }
+    }
+  </script>
+</html>

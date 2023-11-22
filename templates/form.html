@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube Video ID Extractor</title>
+</head>
+<body>
+    <h1>YouTube Video ID Extractor</h1>
+    <form method="post">
+        <label for="youtube_url">Enter a YouTube URL:</label>
+        <input type="text" id="youtube_url" name="youtube_url" placeholder="https://www.youtube.com/watch?v=VIDEO_ID">
+        <button type="submit">Extract Video ID</button>
+    </form>
+
+    {% if video_id %}
+    <p>Extracted Video ID: {{ video_id }}</p>
+    {% endif %}
+    
+    <p></p>
+    <script>
+        // JavaScript to extract the video ID from the URL
+        document.querySelector('form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const youtubeUrl = document.getElementById('youtube_url').value;
+            const videoId = extractVideoId(youtubeUrl);
+            document.querySelector('p').textContent = 'Extracted Video ID: ' + videoId;
+        });
+
+        function extractVideoId(url) {
+            id = (url.slice(-11))
+            window.location.href = "/graph/"+id;
+            return url.slice(-11)
+        }
+    </script>
+</body>
+</html>
+
+
