@@ -29,7 +29,6 @@ def get_statistics(video_id):
     comment_count = response['items'][0]['statistics'].get('commentCount', 0)
     # print(response['items'][0]['snippet']['publishedAt'])
     published_at = response['items'][0]['snippet']['publishedAt']
-    # published_time = response['items'][0]['snippet']['publishedAt'].split("T")[1].split("Z")[0]
     thumbnail = response['items'][0]['snippet']['thumbnails']['high']['url']  # "width": 480, "height": 360
 
     # Create a dictionary to store the video statistics
@@ -41,7 +40,6 @@ def get_statistics(video_id):
         "like_count": like_count,
         "comment_count": comment_count,
         "published_at": published_at,
-        # "published_time": published_time,
         "thumbnail": thumbnail
     }
 

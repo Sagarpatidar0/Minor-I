@@ -19,13 +19,11 @@ def translate(df=None):
 
     headers = {
         'Ocp-Apim-Subscription-Key': key,
-        # location required if you're using a multiservice or regional (not global) resource.
         'Ocp-Apim-Subscription-Region': location,
         'Content-type': 'application/json',
         'X-ClientTraceId': str(uuid.uuid4())
     }
 
-    # You can pass more than one object in body.
     body = []
     for i in range(len(df)):
         body.append({'text': df['comment'][i]})

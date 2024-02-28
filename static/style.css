@@ -129,6 +129,7 @@ button:hover {
     display: flex;
     width: 700px;
     height: 50%;
+    margin-top: 20px ;
 }
 
 .graph {
@@ -167,6 +168,49 @@ option:hover {
 .cloud {
     display: flex;
     justify-content: space-around;
-    margin-top: 30px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
 
+.cloud-h1{
+    color: white;
+}
+
+.cloud img{
+    border-radius: 10px;
+}
+
+
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+}
+
+.box {
+    background-color: #f0f0f0;
+    color: black;
+    border-radius: 5px;
+    padding: 20px;
+    width: 25%;
+}
+
+.box1{
+    background: rgb(61, 244, 61);
+}
+.box2{
+    background: rgb(255, 80, 80);
+}
+.box3{
+    background: #30D5C7;
+}
+
+.ana h1 {
+    color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+}
+
+.ana p {
+    font-size: 20px;
+    margin-bottom: 10px;
 }

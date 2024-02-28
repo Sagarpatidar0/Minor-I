@@ -3,3 +3,5 @@ python-dotenv
 google-api-python-client
 pandas
 matplotlib
+azure-ai-textanalytics
+wordcloud

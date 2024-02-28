@@ -52,7 +52,7 @@ def generate_graph(df):
 
 
 @app.route("/")
-def sagar():
+def home():
     return render_template("index.html", graph=None)
 
 @app.route('/', methods=['POST'])
@@ -62,16 +62,16 @@ def analyze_video():
     if is_valid:
         df = comment.get_comments(video_id)
         statistics = comment.get_statistics(video_id)
-        # translate_df = HtoHE.translate(df)
-        # positive, negative, neutral, p_score, n_score, ne_score = textAnalysis.analysis(translate_df)
-        # textData = {
-        #     "positive": positive,
-        #     "negative": negative,
-        #     "neutral": neutral,
-        #     "p_score": p_score,
-        #     "n_score": n_score,
-        #     "ne_score": ne_score
-        # }
+        translate_df = HtoHE.translate(df)
+        positive, negative, neutral, p_score, n_score, ne_score = textAnalysis.analysis(translate_df)
+        textData = {
+            "positive": positive,
+            "negative": negative,
+            "neutral": neutral,
+            "p_score": p_score,
+            "n_score": n_score,
+            "ne_score": ne_score
+        }
         # print(textData)
 
         graph_all, graph_last_7_days , cloud = generate_graph(df)
@@ -79,10 +79,14 @@ def analyze_video():
         return render_template('index.html' ,
                                 graph=graph_all,graph_7 =graph_last_7_days,
                                 statistics=statistics, video_id = video_id,
-                                cloud=cloud, error=False)
+                                cloud=cloud,textData = textData ,error=False)
 
     else:
         return render_template('index.html', error=True, graph=None)
+
+@app.route("/test", methods=['POST','GET'])
+def test():
+    return render_template('index_text.html')
 
 
     

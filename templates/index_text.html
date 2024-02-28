@@ -12,63 +12,58 @@
 <body>
   <div id="left-section">
     <h3>YouTube Comment Analyzer</h3>
-    <form action="/" method="post">
+    <form action="/test" method="post">
       <input type="text" name="youtube-link" placeholder="YouTube Video Link" id="youtube-link" />
       <button type="submit">Analyse</button>
     </form>
-    {% if statistics %}
-    <iframe id="video_embed" width="300" height="200" src="https://www.youtube.com/embed/{{ video_id }}"></iframe>
-    <p class="video_name">{{ statistics.video_name }}</p>
-    <h4 id="channel_name">{{ statistics.channel_name }}</h4>
-    {% elif error %}
-    <p class="error">Please enter valid YouTube Video URL</p>
-    {% endif %}
+    <iframe id="video_embed" width="300" height="200" src="https://www.youtube.com/embed/DDiW2Mv2MBk"></iframe>
+    
+   
   </div>
   <div id="right-section">
     <div id="graph-container">
-      {% if graph %}
       <h1 class="heading">Statistics</h1>
       <div id="statistics">
         <div class="count view">
           <span class="stat_text">View</span>
-          <span>{{ statistics.view_count }}</span>
+          <span>92380</span>
         </div>
         <div class="count like">
           <span class="stat_text">Like</span>
-          <span>{{ statistics.like_count }}</span>
+          <span>37184</span>
         </div>
         <div class="count comment">
           <span class="stat_text">Comment</span>
-          <span>{{ statistics.comment_count }}</span>
+          <span>5634</span>
         </div>
         <div class="count published_at">
           <span class="stat_text">Published At</span>
-          <span>{{ statistics.published_at|formatdatetime }}</span>
+          <span>July 4, 1776</span>
         </div>
       </div>
-      {% if textData %}
+
       <div class="ana">
         <h1>Comment Analysis Result</h1>
         <div class="container">
           <div class="box box1">
             <p>Positive Comments</p>
-            <p>Total Count: {{textData.positive}}</p>
+            <p>Total Count: 200</p>
           </div>
           <div class="box box3">
             <p>Neutral Comments</p>
-            <p>Total Count: {{textData.neutral}}</p>
+            <p>Total Count: 435</p>
           </div>
           <div class="box box2">
             <p>Negative Comments</p>
-            <p>Total Count: {{textData.negative}}</p>
+            <p>Total Count: 102</p>
           </div>
           
         </div>
       </div>
-      {% endif %}
+
       <h1 class="cloud-h1">Word Cloud</h1>
       <div class="cloud">
-        <img src="{{ cloud }}" alt="Graph" />
+        <img src="{{ url_for('static', filename = '/images/wordcloud.png') }}" alt="Graph" />
       </div>
 
       <div class="graphs">
@@ -79,16 +74,15 @@
             <option value="seven-day">First 7-Day Graph</option>
           </select>
         </div>
-        <img class="graph graph1 none" src="{{ graph }}" alt="Graph for 7 day" />
-        <img class="graph graph2 " src="{{ graph_7 }}" alt="Graph" />
+        <img class="graph graph1 none" src="{{ url_for('static', filename = '/images/graph_all.png') }}" alt="Graph" />
+        <img class="graph graph2 " src="{{ url_for('static', filename = '/images/graph_last_7_days.png') }}" alt="Graph 7" />
       </div>
-      
-      {% else %}
-      <div class="graphs"></div>
-      {% endif %}
+
     </div>
   </div>
 </body>
+
+
 <script>
   function changeGraph() {
     var selectedValue = document.getElementById('graph-type').value

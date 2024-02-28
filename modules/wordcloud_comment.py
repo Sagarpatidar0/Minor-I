@@ -25,7 +25,7 @@ def create_wordcloud(comments):
     plt.figure(figsize=(10, 5))
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
-    # plt.show()
+    plt.tight_layout(pad=1)
 
     # Save the graph as a BytesIO object
     buffer = BytesIO()
