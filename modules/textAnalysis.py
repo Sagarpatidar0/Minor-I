@@ -4,7 +4,7 @@ from azure.core.credentials import AzureKeyCredential
 
 def analysis(df):
 
-    key = "871423458701473dbd26b0b89ecc4358"
+    key =  "sentimentcomment azure api"
     endpoint = "https://sentimentcomment.cognitiveservices.azure.com/"
 
     text_analytics_client = TextAnalyticsClient(endpoint=endpoint, credential=AzureKeyCredential(key))
